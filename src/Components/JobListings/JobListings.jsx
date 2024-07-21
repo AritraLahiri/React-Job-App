@@ -10,7 +10,7 @@ const JobListings = ({ isHomePage = false, title = "Recent Jobs" }) => {
     useEffect(() => {
         const fetchJobs = async () => {
             try {
-                const res = await fetch("http://localhost:8000/api/jobs");
+                const res = await fetch("/api/jobs");
                 let data = await res.json();
                 data = (isHomePage) ? data.slice(0, 3) : data;
                 setJobs(data);

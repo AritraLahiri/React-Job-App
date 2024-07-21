@@ -3,12 +3,14 @@ import HomePage from "./Pages/HomePage"
 import MainLayout from './Layout/MainLayout'
 import JobsPage from './Pages/JobsPage'
 import ErrorPage from './Pages/ErrorPage'
+import JobDetail from './Pages/JobDetail'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<MainLayout />}>
       <Route index element={<HomePage />} />
       <Route path="/jobs" element={<JobsPage />} />
+      <Route path="/job/:id" element={<JobDetail />} />
       <Route path="*" element={<ErrorPage />} />
     </Route>
   )
