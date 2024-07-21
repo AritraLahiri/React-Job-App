@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import JobListing from '../JobListing/JobListing'
 import { useState, useEffect } from 'react';
+import Loader from '../Loader/Loader';
 
 const JobListings = ({ isHomePage = false, title = "Recent Jobs" }) => {
     const [showJobs, setJobs] = useState([]);
@@ -29,11 +30,17 @@ const JobListings = ({ isHomePage = false, title = "Recent Jobs" }) => {
                 <h2 className="text-3xl font-bold text-indigo-500 mb-6 text-center">
                     {title}
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {showJobs.map((job) =>
-                        <JobListing job={job} key={job.id} />
-                    )}
-                </div>
+                {isLoading ? <Loader isLoading={isLoading} /> :
+                    <>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            {showJobs.map((job) =>
+                                <JobListing job={job} key={job.id} />
+                            )}
+                        </div>
+                    </>
+
+                }
+
             </div>
         </section>
     )
