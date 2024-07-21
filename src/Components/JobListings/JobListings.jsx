@@ -1,12 +1,11 @@
 /* eslint-disable react/prop-types */
-import jobs from '../../jobs.json'
 import JobListing from '../JobListing/JobListing'
 import { useState, useEffect } from 'react';
 
 const JobListings = ({ isHomePage = false, title = "Recent Jobs" }) => {
     const [showJobs, setJobs] = useState([]);
     const [isLoading, setLoading] = useState(true);
-    
+
     useEffect(() => {
         const fetchJobs = async () => {
             try {
