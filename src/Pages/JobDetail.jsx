@@ -1,13 +1,35 @@
 import { useState, useEffect } from "react"
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Loader from "../Components/Loader/Loader";
 import { FaArrowLeft, FaMapMarker } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const JobDetail = () => {
     const [job, setJob] = useState(null);
     const [loading, setLoading] = useState(true);
     const { id } = useParams()
-
+    const navigate = useNavigate()
+    const deleteJobFromServer = async () => {
+        setLoading(true);
+        const confirm = window.confirm("Are you sure you wanna delete the job ?");
+        if (!confirm) return;
+        try {
+            await fetch(`/api/job/${id}`, {
+                method: "DELETE",
+                headers: {
+                    'Content-Type': "application/json"
+                }
+            })
+            toast.success("Job deleted successfully !!")
+            navigate("/jobs");
+        }
+        catch (e) {
+            console.log("Error deleting data" + e.Message);
+        }
+        finally {
+            setLoading(false);
+        }
+    }
     useEffect(() => {
         const fetchJob = async () => {
             try {
@@ -105,6 +127,7 @@ const JobDetail = () => {
                                     >Edit Job</a
                                     >
                                     <button
+                                        onClick={deleteJobFromServer}
                                         className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
                                     >
                                         Delete Job
