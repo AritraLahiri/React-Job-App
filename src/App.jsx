@@ -5,6 +5,7 @@ import JobsPage from './Pages/JobsPage'
 import ErrorPage from './Pages/ErrorPage'
 import JobDetail from './Pages/JobDetail'
 import AddJob from './Pages/AddJob'
+import UpdateJob from './Pages/UpdateJob'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -13,6 +14,7 @@ const router = createBrowserRouter(
       <Route path="/jobs" element={<JobsPage />} />
       <Route path="/job/:id" element={<JobDetail />} />
       <Route path="/add-job" element={<AddJob />} />
+      <Route path="/edit-job/:id" element={< UpdateJob />} />
       <Route path="*" element={<ErrorPage />} />
     </Route>
   )
