@@ -11,11 +11,10 @@ export default defineConfig({
     port: process.env.PORT,
     proxy: {
       "/api": {
-        // target:
-        //   process.env.ENVIRONMENT === "DEV"
-        //     ? process.env.API_URL_SANDBOX
-        //     : process.env.API_URL,
-        target: "https://react-job-app-backend.onrender.com/api",
+        target:
+          process.env.ENVIRONMENT === "DEV"
+            ? process.env.API_URL_SANDBOX
+            : process.env.API_URL,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
