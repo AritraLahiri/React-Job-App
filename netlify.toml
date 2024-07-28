@@ -1,4 +1,4 @@
 [[redirects]]
-  from = "/*"
+  from = "/api"
   to = "https://react-job-app-backend.onrender.com/api"
   status = 200
