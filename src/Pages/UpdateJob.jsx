@@ -22,15 +22,15 @@ const UpdateJob = () => {
             try {
                 const res = await fetch(`/api/job/${id}`);
                 const data = await res.json();
-                setTitle(data.title);
-                setType(data.type);
-                setDescription(data.description);
-                setSalary(data.salary);
-                setCompanyName(data.company.name);
-                setCompanyDescription(data.company.description);
-                setContactEmail(data.company.contactEmail);
-                setContactPhone(data.company.contactPhone);
-                setLocation(data.location)
+                setTitle(data[0].title);
+                setType(data[0].type);
+                setDescription(data[0].description);
+                setSalary(data[0].salary);
+                setCompanyName(data[0].companyName);
+                setCompanyDescription(data[0].companyDescription);
+                setContactEmail(data[0].contactEmail);
+                setContactPhone(data[0].contactPhone);
+                setLocation(data[0].location)
             }
             catch (e) {
                 console.log("Error loading data" + e.Message);
@@ -51,12 +51,11 @@ const UpdateJob = () => {
                 description,
                 location,
                 salary,
-                company: {
-                    name: companyName,
-                    description: companyDescription,
-                    contactEmail,
-                    contactPhone
-                }
+                companyName,
+                companyDescription,
+                contactEmail,
+                contactPhone
+
             }
             await fetch(`/api/job/${id}`, {
                 method: "PATCH",

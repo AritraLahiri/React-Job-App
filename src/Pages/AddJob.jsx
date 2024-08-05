@@ -23,14 +23,11 @@ const AddJob = () => {
             description,
             location,
             salary,
-            company: {
-                name: companyName,
-                description: companyDescription,
-                contactEmail,
-                contactPhone
-            }
+            companyName,
+            companyDescription,
+            contactEmail,
+            contactPhone
         }
-        console.log(JSON.stringify(job));
         await fetch('/api/job', {
             method: "POST",
             headers: {
